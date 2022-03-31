@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// トップページ
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+// 評価一覧
+Route::get('/reviewlist', [ReviewController::class, 'reviewlist_index'])->name('reviewlist_index')->middleware(['auth']);
+
+// 投稿
+Route::get('/review', [ReviewController::class, 'review'])->name('review')->middleware(['auth']);
+Route::post('/review', [ReviewController::class, 'review_send'])->name('review')->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

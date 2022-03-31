@@ -1,3 +1,8 @@
+@extends('layouts.main')
+
+@section('title','新規登録')
+
+@section('content')
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
@@ -34,3 +39,5 @@
         </form>
     </x-auth-card>
 </x-guest-layout>
+</article>
+@endsection

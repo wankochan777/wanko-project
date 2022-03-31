@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+/* ヘッダータイトル・ロゴ */
 .project-title {
     font-size: 70px;
     text-align: center;
@@ -9,8 +10,217 @@
 .project-logo img {
     display: block;
     margin: auto;
-    width: 10vw;
+    width: 8vw;
 }
+/* ヘッダータイトル・ロゴ　ここまで */
+
+/* グローバルメニュー */
+ul.gnav-navi-1 {
+    background: gray;
+    padding: 0;
+    text-align: center;
+}
+
+ul.gnav-navi-1 li {
+    display: inline-block;
+}
+
+ul.gnav-navi-1 li a {
+    display: block;
+    padding: 1em;
+    color: #fff;
+    text-decoration: none;
+}
+
+ul.gnav-navi-1 a::first-line {
+    font-size: 16px;
+    font-weight: bold;
+}
+/* グローバルメニュー　ここまで */
+
+/* ユーザー名・ログアウト */
+.auth-logout ul {
+    text-align: right;
+}
+
+.auth-logout ul {
+    list-style: none;
+}
+
+.auth-logout ul li {
+    display: inline-block;
+}
+
+.auth-logout ul li:nth-child(2) {
+    margin-left: 20px;
+    margin-right: 100px;
+}
+
+.auth-name a:first-child {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.logout-button {
+    max-width: 250px;
+    margin: 0 auto;
+}
+
+.logout-button button:hover {
+    cursor: pointer;
+}
+
+.logout-button button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    position: relative;
+    background: black;
+    border: 1px solid black;
+    border-radius: 30px;
+    box-sizing: border-box;
+    padding: 0 25px 0 25px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    line-height: 1.3;
+    text-align: left;
+    text-decoration: none;
+    transition-duration: 0.3s;
+}
+/* ユーザー名・ログアウト　ここまで */
+
+/* トップページ　サービス説明 */
+.service-contents {
+    width: 748px;
+    height: auto;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.service-contents h2 {
+    border-left: solid 5px #499292;
+    padding: 10px 0px 10px 20px;
+    margin: 0px 0px 20px 0px;
+    line-height: normal;
+    color: #666666;
+    background-color: #FCFBFA;
+    font-weight: 400;
+}
+/* トップページ　サービス説明 ここまで */
+
+
+/* 投稿するページ */
+.review-format {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.review-format ul {
+    list-style: none;
+}
+
+.review-text {
+    border: 1px solid rgb(135, 135, 135);
+    width: 100%;
+    max-width: 410px;
+}
+
+.review-comment {
+    border: 1px solid rgb(135, 135, 135);
+    height: 216px;
+    width: 100%;
+    max-width: 410px;
+}
+
+.stars span{
+    display: flex;
+    flex-direction: row-reverse; /* 星を逆順に並べる */
+    justify-content: center;   /* 逆順なので、左寄せにする */
+  }
+
+.stars input[type='radio']{
+    display: none;               /* デフォルトのラジオボタンを非表示にする */
+}
+
+.stars label{
+    color: #D2D2D2;              /* 未選択の星をグレー色に指定 */
+    font-size: 30px;             /* 星の大きさを30pxに指定 */
+    padding: 0 5px;              /* 左右の余白を5pxに指定 */
+    cursor: pointer;             /* カーソルが上に乗ったときに指の形にする */
+}
+
+.stars label:hover,
+.stars label:hover ~ label,
+.stars input[type='radio']:checked ~ label{
+    color: #F8C601;              /* 選択された星以降をすべて黄色にする */
+}
+
+.review-delete-button {
+    display       : inline-block;
+    border-radius : 5%;          /* 角丸       */
+    font-size     : 18pt;        /* 文字サイズ */
+    text-align    : center;      /* 文字位置   */
+    cursor        : pointer;     /* カーソル   */
+    padding       : 12px 12px;   /* 余白       */
+    background    : red;     /* 背景色     */
+    color         : #ffffff;     /* 文字色     */
+    line-height   : 1em;         /* 1行の高さ  */
+    transition    : .3s;         /* なめらか変化 */
+    box-shadow    : 6px 6px 3px #666666;  /* 影の設定 */
+    border        : 2px solid red;    /* 枠の指定 */
+}
+
+.review-delete-button:hover {
+    box-shadow    : none;        /* カーソル時の影消去 */
+    color         : red;     /* 背景色     */
+    background    : #ffffff;     /* 文字色     */
+}
+
+.review-send-button {
+    display       : inline-block;
+    border-radius : 5%;          /* 角丸       */
+    font-size     : 18pt;        /* 文字サイズ */
+    text-align    : center;      /* 文字位置   */
+    cursor        : pointer;     /* カーソル   */
+    padding       : 12px 12px;   /* 余白       */
+    background    : #000066;     /* 背景色     */
+    color         : #ffffff;     /* 文字色     */
+    line-height   : 1em;         /* 1行の高さ  */
+    transition    : .3s;         /* なめらか変化 */
+    box-shadow    : 6px 6px 3px #666666;  /* 影の設定 */
+    border        : 2px solid #000066;    /* 枠の指定 */
+}
+
+.review-send-button:hover {
+    box-shadow    : none;        /* カーソル時の影消去 */
+    color         : #000066;     /* 背景色     */
+    background    : #ffffff;     /* 文字色     */
+}
+/* 投稿するページ　ここまで */
+
+/* 評価一覧 */
+.review-list {
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.review-list th, td {
+    padding: 5px;
+    border: 1px solid #333;
+}
+
+.review-list th {
+    background-color: #2c88d9;
+    color: #FFF;
+}
+/* 評価一覧　ここまで */
+
 
 @media screen and (max-width: 960px) {
     .project-title {
