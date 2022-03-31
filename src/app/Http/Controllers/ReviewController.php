@@ -101,10 +101,21 @@ class ReviewController extends Controller
             ->delete();
         } else {
             $request->validate([
-                'rating'  => 'required',
                 'title' => 'required',
+                'title_cana' => 'required',
+                'actor' => 'required',
+                'rating'  => 'required',
                 'comment' => 'required|min:3',
-            ]);
+                ],
+                [
+                'title.required'  => '※タイトルは必須です',
+                'title_cana.required' => '※タイトルふりがなは必須です',
+                'actor.required' => '※主演俳優は必須です',
+                'rating.required'  => '※星評価は必須です',
+                'comment.required'  => '※コメントは必須です',
+                'comment.required|min:3'  => '※コメントは3文字以上にしてください',
+                ]
+            );
 
             DB::table('review')->updateOrInsert(
                 [
