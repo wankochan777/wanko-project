@@ -19,7 +19,11 @@ class ReviewController extends Controller
     // 投稿一覧
     public function reviewlist_index()
     {
-        return view('review_list.index');
+        $review_list = $this->review_repository->getReviewList(Auth::user()->id);
+
+        return view('review_list.index',[
+            'review_list' => $review_list
+        ]);
     }
 
     // 投稿するページ
@@ -70,5 +74,67 @@ class ReviewController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('reviewlist_index');
+    }
+
+    // 投稿の編集・削除
+    public function review_edit($id)
+    {
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $review_edit = $this->review_repository->getReviewEdit($id);
+
+        return view('review_edit', [
+            'review_edit' => $review_edit,
+            'user_id' => $user_id,
+            'name' => $name,
+            'id' => $id,
+        ]);
+    }
+
+    // 投稿の編集・削除をDBに反映
+    public function review_edit_send(Request $request)
+    {
+        if($request->delete) {
+            DB::table('review')
+            ->where('user_id', $request->user_id)
+            ->where('id', $request->id)
+            ->delete();
+        } else {
+            $request->validate([
+                'title' => 'required',
+                'title_cana' => 'required',
+                'actor' => 'required',
+                'rating'  => 'required',
+                'comment' => 'required|min:3',
+                ],
+                [
+                'title.required'  => '※タイトルは必須です',
+                'title_cana.required' => '※タイトルふりがなは必須です',
+                'actor.required' => '※主演俳優は必須です',
+                'rating.required'  => '※星評価は必須です',
+                'comment.required'  => '※コメントは必須です',
+                'comment.required|min:3'  => '※コメントは3文字以上にしてください',
+                ]
+            );
+
+            DB::table('review')->updateOrInsert(
+                [
+                'user_id' => $request->user_id,
+                'id' => $request->id,
+                ],
+                [
+                'user_id' => $request->user_id,
+                'id' => $request->id,
+                'title' => $request->title,
+                'title_cana' => $request->title_cana,
+                'actor' => $request->actor,
+                'rating' => $request->rating,
+                'comment' => $request->comment,
+                'c_stamp' => now(),
+                ]
+            );
+        }
+
+        return redirect()->route('reviewlist_index', [ 'id' => $request->id ]);
     }
 }

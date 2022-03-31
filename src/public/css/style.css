@@ -221,6 +221,16 @@ ul.gnav-navi-1 a::first-line {
 }
 /* 評価一覧　ここまで */
 
+/* 編集・削除ボタン */
+.review-format div li {
+    display: inline;
+}
+
+.review-format div li:first-child {
+    margin-right: 100px;
+}
+/* 編集・削除ボタン　ここまで */
+
 
 @media screen and (max-width: 960px) {
     .project-title {
