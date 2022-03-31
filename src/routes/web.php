@@ -26,6 +26,10 @@ Route::get('/reviewlist', [ReviewController::class, 'reviewlist_index'])->name('
 Route::get('/review', [ReviewController::class, 'review'])->name('review')->middleware(['auth']);
 Route::post('/review', [ReviewController::class, 'review_send'])->name('review')->middleware(['auth']);
 
+// 投稿編集・削除
+Route::get('/review/{id}/edit', [ReviewController::class, 'review_edit'])->whereNumber('id')->name('review_edit')->middleware(['auth']);
+Route::post('/review/{id}/edit', [ReviewController::class, 'review_edit_send'])->whereNumber('id')->name('review_edit')->middleware(['auth']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

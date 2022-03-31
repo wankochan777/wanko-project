@@ -12,14 +12,17 @@
           <th>星評価</th>
           <th>コメント</th>
         </tr>
+        @foreach($review_list as $list)
         <tr>
-          <td>田中</td>
-          <td>27</td>
+          <td>{{ $list->title }}</td>
+          <td>{{ $list->title_cana }}</td>
+          <td>{{ $list->actor }}</td>
+          <td>{{ $list->rating }}</td>
+          <td>{{ $list->comment }}</td>
+          <td><a href="{{ route('review_edit',['id' => $list->id ])}}">詳細</a></td>
         </tr>
-        <tr>
-          <td>佐藤</td>
-          <td>42</td>
-        </tr>
+        @endforeach
+
     </table>
 </article>
 @endsection
