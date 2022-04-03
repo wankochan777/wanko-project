@@ -3,20 +3,54 @@
 namespace App\Repositories;
 
 use App\Models\Users;
+use App\Models\Review;
 use Illuminate\Support\Facades\DB;
 
 class ReviewRepository
 {
-    public function getReviewList($user_id) {
+    // 評価一覧
+    public function getReviewAllList($user_id)
+    {
         return DB::table('review')
             ->select('id', 'title', 'title_cana', 'actor', 'rating', 'comment')
             ->where('user_id', $user_id)
             ->get();
     }
 
-    public function getReviewEdit($id) {
+    // 評価一覧（絞り込み）
+    public function getReviewSearchList($user_id, $title = null, $title_cana = null, $actor = null, $rating = null)
+    {
+        $query = DB::table('review')
+            ->where('user_id', $user_id);
+
+        if ($title != null) {
+            $query->where('title', 'LIKE', "%$title%");
+        }
+
+        if ($title_cana != null) {
+            $query->where('title_cana', 'LIKE', "%$title_cana%");
+        }
+
+        if ($actor != null) {
+            $query->where('actor', 'LIKE', "%$actor%");
+        }
+
+        if ($rating != null) {
+            $query->where('rating', $rating);
+        }
+
+        $review_list = $query->get();
+
+        return $review_list;
+    }
+
+    // 編集・削除
+    public function getReviewEdit($id)
+    {
         return DB::table('review')
             ->where('id', $id)
             ->first();
     }
+
+
 }

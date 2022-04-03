@@ -231,6 +231,78 @@ ul.gnav-navi-1 a::first-line {
 }
 /* 編集・削除ボタン　ここまで */
 
+.review-list {
+    margin-top: 70px;
+}
+
+/* 検索フォーム */
+.search-content {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.detail-search {
+    background-color: gray;
+    color: #FFFFFF;
+    padding: 10px 10px 10px 40px;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+.search-form {
+    margin-bottom: 20px;
+    border-bottom: 1px dotted gray;
+    padding-bottom: 20px;
+}
+
+.search-form a {
+    width: 25%;
+    float: left;
+    clear: both;
+    padding: 5px;
+}
+
+.search-form input {
+    border: 1px solid gray;
+    width: 70%;
+    border-radius: 3px;
+    padding: 8px;
+}
+
+.search-form #search_series {
+    border: 1px solid gray;
+    width: 70%;
+    border-radius: 3px;
+    padding: 8px;
+}
+
+.search-btn {
+    text-align: center;
+}
+
+.search-btn input {
+    display: inline-block;
+    width: 30%;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+.search-submit {
+    background-color: #333;
+    margin-left: 30px;
+    color: white;
+}
+
+.search-clear {
+    background-color: #DFDFDF;
+}
 
 @media screen and (max-width: 960px) {
     .project-title {

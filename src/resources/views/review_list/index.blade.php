@@ -4,7 +4,7 @@
 
 @section('content')
 <article>
-    <table class="review-list">
+    <table class="review-list" align="center" >
         <tr>
           <th>タイトル</th>
           <th>タイトルふりがな</th>
@@ -19,7 +19,7 @@
           <td>{{ $list->actor }}</td>
           <td>{{ $list->rating }}</td>
           <td>{{ $list->comment }}</td>
-          <td><a href="{{ route('review_edit',['id' => $list->id ])}}">詳細</a></td>
+          <td bgcolor="#dcdcdc"><a href="{{ route('review_edit',['id' => $list->id ])}}">詳細</a></td>
         </tr>
         @endforeach
 
