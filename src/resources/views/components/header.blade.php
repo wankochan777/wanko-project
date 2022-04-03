@@ -31,7 +31,7 @@
             <ul class="gnav-navi-1">
                 <li><a href="{{ route('reviewlist_index')}}">REVIEW LIST<br>評価一覧</a></li>
                 <li><a href="{{ route('review') }}">REVIEW<br>投稿する</a></li>
-                <li><a href="#">SERCH<br>検索する</a></li>
+                <li><a href="{{ route('review_search') }}">SERCH<br>検索する</a></li>
                 <li><a href="#">RANKING<br>ランキング</a></li>
                 <li><a href="#">CONTACT<br>お問合せ</a></li>
             </ul>

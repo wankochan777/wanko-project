@@ -17,16 +17,20 @@ class ReviewController extends Controller
     }
 
     // 投稿一覧
-    public function reviewlist_index()
+    public function reviewlist_index(Request $request)
     {
-        $review_list = $this->review_repository->getReviewList(Auth::user()->id);
+        if($request) {
+            $review_list = $this->review_repository->getReviewSearchList(Auth::user()->id, $request->title, $request->title_cana, $request->actor, $request->rating);
+        } else {
+            $review_list = $this->review_repository->getReviewAllList(Auth::user()->id);
+        }
 
         return view('review_list.index',[
-            'review_list' => $review_list
+            'review_list' => $review_list,
         ]);
     }
 
-    // 投稿するページ
+    // 投稿する
     public function review()
     {
         $id = Auth::user()->id;
@@ -135,6 +139,11 @@ class ReviewController extends Controller
             );
         }
 
-        return redirect()->route('reviewlist_index', [ 'id' => $request->id ]);
+        return redirect()->route('reviewlist_index');
+    }
+
+    public function review_search()
+    {
+        return view('review_search');
     }
 }
