@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,12 @@ Route::post('/review/{id}/edit', [ReviewController::class, 'review_edit_send'])-
 
 // 検索
 Route::get('/revew_search', [ReviewController::class, 'review_search'])->name('review_search')->middleware(['auth']);
+
+// お問い合わせ(入力)
+Route::get('contact', [ContactController::class, 'contact_form'])->name('contact_form');
+
+//お問い合わせ(確認・送信)
+Route::post('contact/confirm', [ContactController::class, 'contact_confirm'])->name('contact_confirm');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReviewTable extends Migration
+class CreateContactTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateReviewTable extends Migration
      */
     public function up()
     {
-        Schema::create('review', function (Blueprint $table) {
+        Schema::create('contact', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
             $table->text('name');
-            $table->string('image')->nullable();
-            $table->text('title');
-            $table->text('title_cana');
-            $table->text('actor');
-            $table->integer('rating');
+            $table->text('mail');
+            $table->string('number')->nullable();
             $table->text('comment');
             $table->timestamp('c_stamp')->nullable();
             $table->timestamp('u_stamp')->nullable();
@@ -36,8 +32,6 @@ class CreateReviewTable extends Migration
      */
     public function down()
     {
-        Schema::table('review', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('contact');
     }
 }

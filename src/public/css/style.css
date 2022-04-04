@@ -1,5 +1,23 @@
 @charset "utf-8";
 
+/* メニューの見出し */
+.menu-container {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menu-title {
+    background-color: gray;
+    color: #FFFFFF;
+    padding: 10px 10px 10px 40px;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+/* メニューの見出し　ここまで */
+
 /* ヘッダータイトル・ロゴ */
 .project-title {
     font-size: 70px;
@@ -118,7 +136,7 @@ ul.gnav-navi-1 a::first-line {
 /* 投稿するページ */
 .review-format {
     text-align: center;
-    padding-top: 50px;
+    padding-top: 30px;
 }
 
 .review-format ul {
@@ -235,73 +253,94 @@ ul.gnav-navi-1 a::first-line {
     margin-top: 70px;
 }
 
-/* 検索フォーム */
-.search-content {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
 
-.detail-search {
-    background-color: gray;
-    color: #FFFFFF;
-    padding: 10px 10px 10px 40px;
-    background-repeat: no-repeat;
-    border-radius: 4px;
-    margin-top: 60px;
-    margin-bottom: 30px;
-}
-
-.search-form {
+/* フォーム共用 */
+.form {
     margin-bottom: 20px;
     border-bottom: 1px dotted gray;
     padding-bottom: 20px;
+    display: flex;
+    flex-direction: row;
 }
 
-.search-form a {
+.form a {
     width: 25%;
     float: left;
     clear: both;
     padding: 5px;
 }
 
-.search-form input {
+.form input {
     border: 1px solid gray;
     width: 70%;
     border-radius: 3px;
     padding: 8px;
 }
 
-.search-form #search_series {
+.form textarea {
+    border: 1px solid gray;
+    width: 70%;
+    border-radius: 3px;
+    padding: 8px;
+    resize: vertical;
+}
+
+.form #search_series {
     border: 1px solid gray;
     width: 70%;
     border-radius: 3px;
     padding: 8px;
 }
 
-.search-btn {
+.btn {
     text-align: center;
 }
 
-.search-btn input {
+.btn input {
     display: inline-block;
     width: 30%;
-    padding: 10px;
+    padding: 15px;
     border-radius: 4px;
     font-weight: bold;
     text-align: center;
     border: none;
     cursor: pointer;
+    font-size: 17px;
 }
 
-.search-submit {
-    background-color: #333;
+.submit {
+    background-color: rgb(71, 71, 71);
     margin-left: 30px;
     color: white;
 }
 
-.search-clear {
+.clear {
     background-color: #DFDFDF;
+    font-size: 17px;
+}
+
+/* お問い合わせフォーム　必須マーク */
+.required {
+    margin-left: 0.5em;
+    padding: 0px 7px 0px 7px;
+    border-radius: 4px;
+    font-size: 0.7em;
+    color: white;
+    background-color: #C44;
+    content: "必須";
+}
+
+/* バリデーション */
+.varidation {
+    list-style: none;
+    width: 270px;
+	margin: auto;
+	overflow: hidden;
+}
+
+.varidation li {
+    color: red;
+    float: left;
 }
 
 @media screen and (max-width: 960px) {
