@@ -12,16 +12,18 @@ class ReviewRepository
     public function getReviewAllList($user_id)
     {
         return DB::table('review')
-            ->select('id', 'title', 'title_cana', 'actor', 'rating', 'comment')
+            ->select('id', 'title', 'title_cana', 'image', 'actor', 'genre', 'rating', 'comment')
             ->where('user_id', $user_id)
-            ->get();
+            ->orderByRaw('CAST(title_cana as CHAR) asc')
+            ->paginate(15);
     }
 
     // 評価一覧（絞り込み）
-    public function getReviewSearchList($user_id, $title = null, $title_cana = null, $actor = null, $rating = null)
+    public function getReviewSearchList($user_id, $title = null, $title_cana = null, $actor = null, $rating = null, $genre = null)
     {
         $query = DB::table('review')
-            ->where('user_id', $user_id);
+            ->where('user_id', $user_id)
+            ->orderByRaw('CAST(title_cana as CHAR) asc');
 
         if ($title != null) {
             $query->where('title', 'LIKE', "%$title%");
@@ -39,7 +41,11 @@ class ReviewRepository
             $query->where('rating', $rating);
         }
 
-        $review_list = $query->get();
+        if ($genre != null) {
+            $query->where('genre', $genre);
+        }
+
+        $review_list = $query->paginate(15);
 
         return $review_list;
     }

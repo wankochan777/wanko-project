@@ -21,6 +21,7 @@ class CreateReviewTable extends Migration
             $table->text('title');
             $table->text('title_cana');
             $table->text('actor');
+            $table->text('genre');
             $table->integer('rating');
             $table->text('comment');
             $table->timestamp('c_stamp')->nullable();
