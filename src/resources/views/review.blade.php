@@ -6,7 +6,6 @@
 <article>
     <form method="POST" action="{{ route('review') }}" enctype="multipart/form-data">
         @csrf
-        <br>
         <div class="menu-container">
             <h2 class="menu-title">レビュー投稿</h2>
             <ul class="varidation">
