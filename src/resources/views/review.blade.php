@@ -6,12 +6,14 @@
 <article>
     <form method="POST" action="{{ route('review') }}">
         @csrf
+        <br>
+        <ul class="varidation">
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
         <div class="review-format">
             <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-                <br>
                 <li>タイトル</li>
                 <li><input type="text" name="title" class="review-text" value="{{ old('title') }}"></li>
                 <br>

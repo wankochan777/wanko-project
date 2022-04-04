@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\ReviewRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Repositories\ReviewRepository;
 use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
