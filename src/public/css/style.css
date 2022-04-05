@@ -113,7 +113,7 @@ ul.gnav-navi-1 a::first-line {
 
 /* トップページ　サービス説明 */
 .service-contents {
-    width: 748px;
+    width: 50%;
     height: auto;
     margin-top: 100px;
     margin-bottom: 20px;
@@ -573,7 +573,17 @@ input[type="file"] {
 /* ペジネーションここまで */
 
 
+
 @media screen and (max-width: 960px) {
+    .service-contents {
+        width: 100%;
+        height: auto;
+        margin-top: 100px;
+        margin-bottom: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .project-title {
         font-size: 40px;
     }
