@@ -31,7 +31,7 @@
                 <textarea name="comment" rows="10" placeholder="お問い合わせ内容をこちらにご記入ください。">{{ old('comment') }}</textarea>
             </div>
             <div class="btn">
-                <input type="submit" class="submit" value="入力内容を確認する">
+                <input type="submit" class="submit" value="確認する">
             </div>
         </form>
     </div>

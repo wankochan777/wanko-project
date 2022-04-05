@@ -29,7 +29,7 @@
     @if(Auth::check())
         <nav>
             <ul class="gnav-navi-1">
-                <li><a href="{{ route('reviewlist_index')}}">REVIEW LIST<br>レビュー一覧</a></li>
+                <li><a href="{{ route('reviewlist_index')}}">LIST<br>レビュー一覧</a></li>
                 <li><a href="{{ route('review') }}">REVIEW<br>投稿する</a></li>
                 <li><a href="{{ route('review_search') }}">SEARCH<br>検索する</a></li>
                 <li><a href="{{ route('contact_form') }}">CONTACT<br>お問合せ</a></li>
