@@ -4,7 +4,7 @@
     </div>
 
     <div class="project-logo">
-        <img src="image/movie_film_logo.png">
+        <img src="{{ asset('image/movie_film_logo.png') }}">
     </div>
     <br>
 
@@ -41,7 +41,7 @@
                 <li><a href="{{ route('welcome') }}">TOP<br>トップ</a></li>
                 <li><a href="{{ route('login') }}">LOGIN<br>ログイン</a></li>
                 <li><a href="{{ route('register') }}">REGISTER<br>新規登録</a></li>
-                <li><a href="#">CONTACT<br>お問合せ</a></li>
+                <li><a href="{{ route('contact_form') }}">CONTACT<br>お問合せ</a></li>
             </ul>
         </nav>
     @endif
