@@ -88,7 +88,6 @@ class ReviewController extends Controller
             [
             'user_id' => $request->user_id,
             'name' => $request->name,
-            'image' => $request->image->store('public/image'),
             'rating' => $request->rating,
             'actor' => $request->actor,
             'genre' => $request->genre,
