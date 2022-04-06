@@ -4,7 +4,7 @@
 
 @section('content')
 <article>
-    <form method="POST" action="{{ route('review') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('review') }}">
         @csrf
         <div class="menu-container">
             <h2 class="menu-title">レビュー投稿</h2>
@@ -34,10 +34,6 @@
                     <option value="{{ $value }}" @if(old('genre') == $value) selected @endif>{{ $value }}</option>
                     @endforeach
                 </select>
-            </div>
-            <div class="form">
-                <a>画像</a>
-                <input type="file" name="image">
             </div>
             <div class="form">
                 <a>星評価</a>

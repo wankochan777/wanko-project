@@ -16,15 +16,15 @@
             <br>
             <div class="form">
                 <a>お名前 <span class="required">必須</span></a>
-                <input type="search" name="name" value="{{ old('name') }}" placeholder="お名前">
+                <input type="text" name="name" value="{{ old('name') }}" placeholder="お名前">
             </div>
             <div class="form">
                 <a>メールアドレス <span class="required">必須</span></a>
-                <input type="search" name="mail" value="{{ old('mail') }}" placeholder="メールアドレス">
+                <input type="text" name="mail" value="{{ old('mail') }}" placeholder="メールアドレス">
             </div>
             <div class="form">
                 <a>電話番号</a>
-                <input type="search" name="number" value="{{ old('number') }}" placeholder="電話番号">
+                <input type="text" name="number" value="{{ old('number') }}" placeholder="電話番号">
             </div>
             <div class="form">
                 <a>お問い合わせ内容 <span class="required">必須</span></a>

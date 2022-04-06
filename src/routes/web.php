@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-// 評価一覧
+// レビュー一覧
 Route::get('/reviewlist', [ReviewController::class, 'reviewlist_index'])->name('reviewlist_index')->middleware(['auth']);
 
 // 投稿

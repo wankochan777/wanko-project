@@ -28,7 +28,11 @@
 
     @if(Auth::check())
         <nav>
+            @if(Request::routeIs('reviewlist_index'))
+            <ul class="gnav-navi-2">
+            @else
             <ul class="gnav-navi-1">
+            @endif
                 <li><a href="{{ route('reviewlist_index')}}">LIST<br>レビュー一覧</a></li>
                 <li><a href="{{ route('review') }}">REVIEW<br>投稿する</a></li>
                 <li><a href="{{ route('review_search') }}">SEARCH<br>検索する</a></li>
