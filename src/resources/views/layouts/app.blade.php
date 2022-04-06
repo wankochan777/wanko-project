@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link href="css/app.css" rel="stylesheet">
+        <link href="{{ secure_asset('assets/css/app.css') }}" rel="stylesheet">
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
