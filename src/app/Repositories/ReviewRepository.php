@@ -15,7 +15,7 @@ class ReviewRepository
             ->select('id', 'title', 'title_cana', 'image', 'actor', 'genre', 'rating', 'comment')
             ->where('user_id', $user_id)
             ->orderByRaw('CAST(title_cana as CHAR) asc')
-            ->paginate(15);
+            ->paginate(18);
     }
 
     // 評価一覧（絞り込み）
@@ -45,7 +45,7 @@ class ReviewRepository
             $query->where('genre', $genre);
         }
 
-        $review_list = $query->paginate(15);
+        $review_list = $query->paginate(18);
 
         return $review_list;
     }
@@ -58,7 +58,7 @@ class ReviewRepository
             ->first();
     }
 
-    // 画像を更新・削除時、古い画像をstorageから削除する為のクエリ取得
+    // 画像を更新・削除時、古い画像ファイルを削除する為のクエリ取得
     public function getOldImgEditOrDelete($user_id, $id)
     {
         return DB::table('review')

@@ -55,7 +55,7 @@ return [
 
         'direct' => [
             'driver' => 'local',
-            'root'   => public_path() . '/uploads',
+            'root'   => public_path() . '/image',
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],

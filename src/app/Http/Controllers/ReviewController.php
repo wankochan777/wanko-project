@@ -159,7 +159,7 @@ class ReviewController extends Controller
     // 投稿の編集・削除をDBに反映
     public function review_edit_send(Request $request)
     {
-        // 画像を更新・削除時、古い画像をstorageから削除する為のクエリ取得
+        // 画像を更新・削除時、古い画像ファイルを削除する為のクエリ取得
         $img_edit = $this->review_repository->getOldImgEditOrDelete($request->user_id, $request->id);
 
         if($request->delete) {
@@ -168,7 +168,7 @@ class ReviewController extends Controller
             ->where('id', $request->id)
             ->delete();
 
-            // レビュー削除したら、storageファイルの画像を削除
+            // レビュー削除したら、画像ファイルを削除
             Storage::disk('direct')->delete($img_edit->image);
 
         } else {
@@ -210,7 +210,7 @@ class ReviewController extends Controller
                     ]
                 );
             } else {
-                // 画像を更新したら、storageファイルから古い画像を削除
+                // 画像を更新したら、古い画像ファイルを削除
                 $request->image = Storage::disk('direct')->delete($img_edit->image);
 
                 // レビューが存在するなら更新、存在しないなら登録
