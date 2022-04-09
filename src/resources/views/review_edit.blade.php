@@ -35,7 +35,7 @@
                     <div class="edit-img">
                         <label for="file_upload">
                         ファイルを変更する
-                        <input type="file" accept="images/*" id="file_upload" name="image" >
+                        <input type="file" accept="image/*" id="file_upload" name="image" >
                     </div>
                 @endif
             </div>
