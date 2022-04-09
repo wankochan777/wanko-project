@@ -6,6 +6,7 @@ use App\Repositories\ReviewRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ReviewController extends Controller
 {
@@ -84,19 +85,36 @@ class ReviewController extends Controller
             ]
         );
 
-        DB::table('review')->insert(
-            [
-            'user_id' => $request->user_id,
-            'name' => $request->name,
-            'rating' => $request->rating,
-            'actor' => $request->actor,
-            'genre' => $request->genre,
-            'title' => $request->title,
-            'title_cana' => $request->title_cana,
-            'comment' => $request->comment,
-            'c_stamp' => now(),
-            ]
-        );
+        if($request->file('image') == null) {
+            DB::table('review')->insert(
+                [
+                'user_id' => $request->user_id,
+                'name' => $request->name,
+                'rating' => $request->rating,
+                'actor' => $request->actor,
+                'genre' => $request->genre,
+                'title' => $request->title,
+                'title_cana' => $request->title_cana,
+                'comment' => $request->comment,
+                'c_stamp' => now(),
+                ]
+            );
+        } else {
+            DB::table('review')->insert(
+                [
+                'user_id' => $request->user_id,
+                'name' => $request->name,
+                'rating' => $request->rating,
+                'actor' => $request->actor,
+                'image' => $request->file('image')->store('', 'public'),
+                'genre' => $request->genre,
+                'title' => $request->title,
+                'title_cana' => $request->title_cana,
+                'comment' => $request->comment,
+                'c_stamp' => now(),
+                ]
+            );
+        }
 
         $request->session()->regenerateToken();
 
@@ -141,11 +159,18 @@ class ReviewController extends Controller
     // 投稿の編集・削除をDBに反映
     public function review_edit_send(Request $request)
     {
+        // 画像を更新・削除時、古い画像をstorageから削除する為のクエリ取得
+        $img_edit = $this->review_repository->getOldImgEditOrDelete($request->user_id, $request->id);
+
         if($request->delete) {
             DB::table('review')
             ->where('user_id', $request->user_id)
             ->where('id', $request->id)
             ->delete();
+
+            // レビュー削除したら、storageファイルの画像を削除
+            Storage::disk('public')->delete($img_edit->image);
+
         } else {
             $request->validate([
                 'title' => 'required',
@@ -166,23 +191,48 @@ class ReviewController extends Controller
                 ]
             );
 
-            DB::table('review')->updateOrInsert(
-                [
-                'user_id' => $request->user_id,
-                'id' => $request->id,
-                ],
-                [
-                'user_id' => $request->user_id,
-                'id' => $request->id,
-                'title' => $request->title,
-                'title_cana' => $request->title_cana,
-                'actor' => $request->actor,
-                'genre' => $request->genre,
-                'rating' => $request->rating,
-                'comment' => $request->comment,
-                'c_stamp' => now(),
-                ]
-            );
+            if($request->file('image') == null) {
+                DB::table('review')->updateOrInsert(
+                    [
+                    'user_id' => $request->user_id,
+                    'id' => $request->id,
+                    ],
+                    [
+                    'user_id' => $request->user_id,
+                    'id' => $request->id,
+                    'title' => $request->title,
+                    'title_cana' => $request->title_cana,
+                    'actor' => $request->actor,
+                    'genre' => $request->genre,
+                    'rating' => $request->rating,
+                    'comment' => $request->comment,
+                    'c_stamp' => now(),
+                    ]
+                );
+            } else {
+                // 画像を更新したら、storageファイルから古い画像を削除
+                $request->image = Storage::disk('public')->delete($img_edit->image);
+
+                // レビューが存在するなら更新、存在しないなら登録
+                DB::table('review')->updateOrInsert(
+                    [
+                    'user_id' => $request->user_id,
+                    'id' => $request->id,
+                    ],
+                    [
+                    'user_id' => $request->user_id,
+                    'id' => $request->id,
+                    'title' => $request->title,
+                    'title_cana' => $request->title_cana,
+                    'actor' => $request->actor,
+                    'image' => $request->file('image')->store('', 'public'),
+                    'genre' => $request->genre,
+                    'rating' => $request->rating,
+                    'comment' => $request->comment,
+                    'c_stamp' => now(),
+                    ]
+                );
+            }
         }
 
         return redirect()->route('reviewlist_index');

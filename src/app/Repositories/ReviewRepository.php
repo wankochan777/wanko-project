@@ -58,5 +58,14 @@ class ReviewRepository
             ->first();
     }
 
+    // 画像を更新・削除時、古い画像をstorageから削除する為のクエリ取得
+    public function getOldImgEditOrDelete($user_id, $id)
+    {
+        return DB::table('review')
+            ->select('image')
+            ->where('user_id', $user_id)
+            ->where('id', $id)
+            ->first();
+    }
 
 }

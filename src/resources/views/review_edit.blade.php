@@ -4,7 +4,7 @@
 
 @section('content')
 <article>
-    <form method="POST" action="{{ route('review_edit', ['id' => $id]) }}">
+    <form method="POST" enctype="multipart/form-data">
         @csrf
         <div class="menu-container">
             <h2 class="menu-title">レビュー編集</h2>
@@ -25,6 +25,19 @@
             <div class="form">
                 <a>俳優</a>
                 <input type="text" name="actor" value="{{ $review_edit->actor }}" placeholder="俳優名をご記入ください。">
+            </div>
+            <div class="form">
+                <a>画像</a>
+                @if($review_edit->image == null)
+                    <input type="file" accept="images/*" name="image">
+                @else
+                    <img src="{{ asset('images/' . $review_edit->image) }}" width=90px height=120px class="upload-img">
+                    <div class="edit-img">
+                        <label for="file_upload">
+                        ファイルを変更する
+                        <input type="file" accept="images/*" id="file_upload" name="image" >
+                    </div>
+                @endif
             </div>
             <div class="form">
                 <a>ジャンル</a>

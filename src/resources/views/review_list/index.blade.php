@@ -4,27 +4,19 @@
 
 @section('content')
 <article>
-    <table class="review-list" align="center" >
-        <tr>
-            <th>タイトル</th>
-            <th>ふりがな</th>
-            <th>俳優</th>
-            <th>ジャンル</th>
-            <th>星評価</th>
-            <th>コメント</th>
-        </tr>
+    <div class="review-list">
         @foreach($review_list as $list)
-        <tr>
-            <td>{{ Str::limit($list->title, 40, '...') }}</td>
-            <td>{{ Str::limit($list->title_cana, 40, '...') }}</td>
-            <td>{{ Str::limit($list->actor, 20, '...') }}</td>
-            <td>{{ $list->genre }}</td>
-            <td><span class="star5_rating" data-rate="{{ number_format($list->rating, 1) }}"></span></td>
-            <td>{{ Str::limit($list->comment, 40, '...') }}</td>
-            <td><a href="{{ route('review_edit',['id' => $list->id ])}}">編集</a></td>
-        </tr>
+            <div class="list-content">
+                <ul>
+                    <li><a href="{{ route('review_edit',['id' => $list->id ])}}">
+                        <img src="{{ asset('images/' . $list->image) }}" alt="" class="review-img" ></a></li>
+                    <li><span class="star5_rating" data-rate="{{ number_format($list->rating, 1) }}"></span></li>
+                    <li>{{ Str::limit($list->title, 30, '...') }}</li>
+                    <li>{{ Str::limit($list->actor, 30, '...') }}</li>
+                </ul>
+            </div>
         @endforeach
-    </table>
+    </div>
     <div class="paginate-position">{{ $review_list->withQueryString()->links('components.pagenation') }}</div>
 </article>
 @endsection

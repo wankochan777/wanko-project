@@ -4,7 +4,7 @@
 
 @section('content')
 <article>
-    <form method="POST" action="{{ route('review') }}">
+    <form method="POST" enctype="multipart/form-data">
         @csrf
         <div class="menu-container">
             <h2 class="menu-title">レビュー投稿</h2>
@@ -16,12 +16,19 @@
             <br>
             <div class="form">
                 <a>タイトル</a>
-                <input type="text" name="title" value="{{ old('title') }}" placeholder="映画のタイトル名をご記入ください。">
+                <input type="text" id="user_name" name="title" value="{{ old('title') }}" placeholder="映画のタイトル名をご記入ください。">
             </div>
             <div class="form">
                 <a>ふりがな</a>
-                <input type="text" name="title_cana" value="{{ old('title_cana') }}" placeholder="映画のタイトル名をひらがなでご記入ください。">
+                <input type="text" id="kana_name" name="title_cana" value="{{ old('title_cana') }}" placeholder="映画のタイトル名をひらがなでご記入ください。">
             </div>
+            <script>
+            $(function() {
+                $.fn.autoKana('#user_name', '#kana_name', {
+                    katakana : true  //true：カタカナ、false：ひらがな（デフォルト）
+                });
+            });
+            </script>
             <div class="form">
                 <a>俳優</a>
                 <input type="text" name="actor" value="{{ old('actor') }}" placeholder="俳優名をご記入ください。">
@@ -34,6 +41,10 @@
                     <option value="{{ $value }}" @if(old('genre') == $value) selected @endif>{{ $value }}</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="form">
+                <a>画像</a>
+                <input type="file" accept="images/*" name="image">
             </div>
             <div class="form">
                 <a>星評価</a>

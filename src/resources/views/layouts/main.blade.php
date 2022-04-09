@@ -4,7 +4,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen and (min-width:961px),print" href="{{ asset('css/style_pc.css') }}">
+        <link rel="stylesheet" type="text/css" media="screen and (max-width:960px)" href="{{ asset('css/style_sp.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+        <!-- jqueryライブラリ -->
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/jquery.autoKana.js" type="text/javascript"></script>
 
         @hasSection('title')
             <title>@yield('title') | My Movie Review</title>
