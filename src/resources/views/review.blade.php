@@ -44,7 +44,7 @@
             </div>
             <div class="form">
                 <a>画像</a>
-                <input type="file" accept="images/*" name="image">
+                <input type="file" accept="image/*" name="image">
             </div>
             <div class="form">
                 <a>星評価</a>

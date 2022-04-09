@@ -29,7 +29,7 @@
             <div class="form">
                 <a>画像</a>
                 @if($review_edit->image == null)
-                    <input type="file" accept="images/*" name="image">
+                    <input type="file" accept="image/*" name="image">
                 @else
                     <img src="{{ asset('image/' . $review_edit->image) }}" width=90px height=120px class="upload-img">
                     <div class="edit-img">
