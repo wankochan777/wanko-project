@@ -106,7 +106,7 @@ class ReviewController extends Controller
                 'name' => $request->name,
                 'rating' => $request->rating,
                 'actor' => $request->actor,
-                'image' => $request->file('image')->store('', 'direct'),
+                // 'image' => $request->file('image')->store('', 'images'),
                 'genre' => $request->genre,
                 'title' => $request->title,
                 'title_cana' => $request->title_cana,
@@ -169,7 +169,7 @@ class ReviewController extends Controller
             ->delete();
 
             // レビュー削除したら、画像ファイルを削除
-            Storage::disk('direct')->delete($img_edit->image);
+            // Storage::disk('public')->delete($img_edit->image);
 
         } else {
             $request->validate([

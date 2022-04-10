@@ -31,7 +31,7 @@
                 @if($review_edit->image == null)
                     <input type="file" accept="image/*" name="image">
                 @else
-                    <img src="{{ asset('uploads/' . $review_edit->image) }}" width=90px height=120px class="upload-img">
+                    <img src="{{ asset('storage/' . $review_edit->image) }}" width=90px height=120px class="upload-img">
                     <div class="edit-img">
                         <label for="file_upload">
                         ファイルを変更する
